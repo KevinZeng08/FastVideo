@@ -114,8 +114,8 @@ class CudaPlatformBase(Platform):
         # TODO(will): maybe come up with a more general interface for local attention
         # if distributed is False, we always try to use Flash attn
 
-        logger.info(
-            "Trying FASTVIDEO_ATTENTION_BACKEND=%s", envs.FASTVIDEO_ATTENTION_BACKEND)
+        logger.info("Trying FASTVIDEO_ATTENTION_BACKEND=%s",
+                    envs.FASTVIDEO_ATTENTION_BACKEND)
         if selected_backend == _Backend.SLIDING_TILE_ATTN:
             try:
                 from st_attn import sliding_tile_attention  # noqa: F401
@@ -132,7 +132,7 @@ class CudaPlatformBase(Platform):
                 )
         elif selected_backend == _Backend.TORCH_SDPA:
             return "fastvideo.v1.attention.backends.sdpa.SDPABackend"
-        elif selected_backend == _Backend.FLASH_ATTN or selected_backend == None:
+        elif selected_backend == _Backend.FLASH_ATTN or selected_backend is None:
             pass
         elif selected_backend:
             raise ValueError(f"Invalid attention backend for {cls.device_name}")

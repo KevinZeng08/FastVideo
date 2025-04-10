@@ -39,11 +39,12 @@ from fastvideo.v1.layers.linear import (MergedColumnParallelLinear,
                                         QKVParallelLinear, RowParallelLinear)
 from fastvideo.v1.layers.rotary_embedding import get_rope
 from fastvideo.v1.layers.vocab_parallel_embedding import VocabParallelEmbedding
+from fastvideo.v1.models.encoders.base import BaseEncoder
 from fastvideo.v1.models.loader.weight_utils import (default_weight_loader,
                                                      maybe_remap_kv_scale_name)
-from fastvideo.v1.models.encoders.base import BaseEncoder
 # from ..utils import (extract_layer_index)
 from fastvideo.v1.platforms import _Backend
+
 
 class QuantizationConfig:
     pass
@@ -164,12 +165,13 @@ class LlamaAttention(nn.Module):
             is_neox_style=is_neox_style,
         )
 
-        self.attn = LocalAttention(self.num_heads,
-                                   self.head_dim,
-                                   self.num_kv_heads,
-                                   softmax_scale=self.scaling,
-                                   causal=True,
-                                   supported_attention_backends=config.supported_attention_backends)
+        self.attn = LocalAttention(
+            self.num_heads,
+            self.head_dim,
+            self.num_kv_heads,
+            softmax_scale=self.scaling,
+            causal=True,
+            supported_attention_backends=config.supported_attention_backends)
 
     def forward(
         self,
@@ -279,6 +281,7 @@ class LlamaDecoderLayer(nn.Module):
 
 class LlamaModel(BaseEncoder):
     _supported_attention_backends = (_Backend.FLASH_ATTN, _Backend.TORCH_SDPA)
+
     def __init__(self,
                  config: LlamaConfig,
                  prefix: str = "",
