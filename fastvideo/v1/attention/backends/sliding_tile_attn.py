@@ -80,7 +80,7 @@ class SlidingTileAttentionMetadataBuilder(AttentionMetadataBuilder):
         fastvideo_args: FastVideoArgs,
     ) -> SlidingTileAttentionMetadata:
 
-        return SlidingTileAttentionMetadata(current_timestep=current_timestep, )
+        return SlidingTileAttentionMetadata(current_timestep=current_timestep)
 
 
 class SlidingTileAttentionImpl(AttentionImpl):
