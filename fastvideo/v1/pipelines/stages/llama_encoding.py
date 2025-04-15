@@ -73,11 +73,13 @@ class LlamaEncodingStage(PipelineStage):
         """
 
         text = prompt_template_video["template"].format(batch.prompt)
+        crop_start = prompt_template_video.get("crop_start", -1)
         text_inputs = self.tokenizer(
             text,
             truncation=True,
-            # better way to handle this?
-            max_length=256,
+            padding="max_length",
+            # TODO(will): better way to handle this?
+            max_length=256 + crop_start,
             return_tensors="pt",
         )
         hidden_state_skip_layer = 2
