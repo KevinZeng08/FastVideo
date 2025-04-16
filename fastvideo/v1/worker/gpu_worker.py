@@ -1,23 +1,22 @@
-import torch
-from typing import Optional, Dict, Any, cast
-import setproctitle
-import psutil
+import contextlib
 import faulthandler
-import signal
 import gc
 import os
-import contextlib
+import signal
+from typing import Any, Dict, Optional, cast
 
+import psutil
+import setproctitle
+import torch
+
+from fastvideo.v1.distributed import (cleanup_dist_env_and_memory,
+                                      init_distributed_environment,
+                                      initialize_model_parallel)
 from fastvideo.v1.fastvideo_args import FastVideoArgs
 from fastvideo.v1.logger import init_logger
-from fastvideo.v1.pipelines import ForwardBatch
-from fastvideo.v1.distributed import (
-    init_distributed_environment,
-    initialize_model_parallel,
-)
-from fastvideo.v1.utils import kill_itself_when_parent_died, get_exception_traceback
-from fastvideo.v1.pipelines import build_pipeline
-from fastvideo.v1.distributed import cleanup_dist_env_and_memory
+from fastvideo.v1.pipelines import ForwardBatch, build_pipeline
+from fastvideo.v1.utils import (get_exception_traceback,
+                                kill_itself_when_parent_died)
 
 logger = init_logger(__name__)
 
