@@ -39,25 +39,6 @@ class Worker:
         # TODO(will): add request dispatcher
         # self._request_dispatcher = TypeBasedDispatcher(
         #     [
-        # (TokenizedGenerateReqInput, self.handle_generate_request),
-        # (TokenizedEmbeddingReqInput, self.handle_embedding_request),
-        # (FlushCacheReq, self.flush_cache_wrapped),
-        # (AbortReq, self.abort_request),
-        # (OpenSessionReqInput, self.open_session),
-        # (CloseSessionReqInput, self.close_session),
-        # (UpdateWeightFromDiskReqInput, self.update_weights_from_disk),
-        # (InitWeightsUpdateGroupReqInput, self.init_weights_update_group),
-        # (
-        #     UpdateWeightsFromDistributedReqInput,
-        #     self.update_weights_from_distributed,
-        # ),
-        # (UpdateWeightsFromTensorReqInput, self.update_weights_from_tensor),
-        # (GetWeightsByNameReqInput, self.get_weights_by_name),
-        # (ReleaseMemoryOccupationReqInput, self.release_memory_occupation),
-        # (ResumeMemoryOccupationReqInput, self.resume_memory_occupation),
-        # (ProfileReq, self.profile),
-        # (GetInternalStateReq, self.get_internal_state),
-        # (SetInternalStateReq, self.set_internal_state),
         # (RpcReqInput, self.handle_rpc_request),
         # (GenerateRequest, self.handle_generate_request),
         # (ExpertDistributionReq, self.expert_distribution_handle),
