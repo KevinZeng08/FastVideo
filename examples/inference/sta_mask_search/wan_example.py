@@ -8,7 +8,8 @@ def main(args):
     generator = VideoGenerator.from_pretrained(
         "Wan-AI/Wan2.1-T2V-14B-Diffusers",
         num_gpus=args.num_gpus,  # Adjust based on your hardware
-        STA_mode=args.STA_mode
+        STA_mode=args.STA_mode,
+        flow_shift=args.flow_shift
     )
 
     # Prompts for your video
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     parser.add_argument("--num_inference_steps", type=int, default=50)
     parser.add_argument("--fps", type=int, default=16)
     parser.add_argument("--guidance_scale", type=float, default=5.0)
+    parser.add_argument("--flow_shift", type=float, default=5.0)
     parser.add_argument("--seed", type=int, default=12345)
     parser.add_argument("--output_path", type=str, default="my_videos/")
     parser.add_argument("--num_gpus", type=int, default=1)

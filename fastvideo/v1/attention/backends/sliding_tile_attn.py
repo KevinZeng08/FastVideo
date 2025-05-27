@@ -234,8 +234,11 @@ class SlidingTileAttentionImpl(AttentionImpl):
         sp_group = get_sp_group()
         current_rank = sp_group.rank_in_group
         start_head = current_rank * head_num
-
+        # from IPython import embed
+        # embed()
         # searching or tuning mode
+        # import pdb; pdb.set_trace()
+        
         if len(STA_param) < head_num * sp_group.world_size:
             sparse_attn_hidden_states_all = []
             full_mask_window = STA_param[-1]

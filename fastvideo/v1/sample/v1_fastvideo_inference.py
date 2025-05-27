@@ -67,7 +67,7 @@ def main(fastvideo_args: FastVideoArgs):
         # Save video
         os.makedirs(os.path.dirname(fastvideo_args.output_path), exist_ok=True)
         imageio.mimsave(os.path.join(fastvideo_args.output_path,
-                                     f"{prompt[:100]}.mp4"),
+                                     f"{prompt[:200]}.mp4"),
                         frames,
                         fps=fastvideo_args.fps)
 
