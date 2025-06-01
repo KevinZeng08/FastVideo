@@ -86,6 +86,7 @@ class VideoGenerator:
 
         # 2. If users also provide some kwargs, it will override the pipeline config.
         # The user kwargs shouldn't contain model config parameters!
+
         if config is None:
             logger.warning("No config found for model %s, using default config",
                            model_path)
@@ -260,6 +261,7 @@ class VideoGenerator:
 
         # Run inference
         start_time = time.perf_counter()
+        
         output_batch = self.executor.execute_forward(batch, fastvideo_args)
         samples = output_batch
 

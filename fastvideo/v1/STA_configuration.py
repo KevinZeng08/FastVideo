@@ -82,7 +82,7 @@ def configure_sta(mode='STA_searching', layer_num=40, time_step_num=50, head_num
             mask = mask_candidates[index]
             masks_list = [int(x) for x in mask.split(',')]
             selected_masks.append(masks_list)
-
+            
         # Read JSON results
         results = read_specific_json_files(mask_search_files_path)
         averaged_results = average_head_losses(results, selected_masks)
@@ -225,6 +225,7 @@ def average_head_losses(results, selected_masks):
 
         # Sum across all prompts
         for prompt_result in results:
+
             accumulated_data += np.array(prompt_result[loss_type][mask_str])
 
         # Average by dividing by number of prompts
