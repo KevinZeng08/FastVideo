@@ -60,6 +60,6 @@ if __name__ == '__main__':
     parser.add_argument("--output_path", type=str, default="my_videos/")
     parser.add_argument("--num_gpus", type=int, default=1)
     parser.add_argument("--STA_mode", type=str, default="STA_searching")
-    parser.add_argument("--skip_time_steps", type=int, default=15)
+    parser.add_argument("--skip_time_steps", type=int, default=12)
     args = parser.parse_args()
     main(args)
